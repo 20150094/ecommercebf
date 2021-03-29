@@ -21,9 +21,9 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        
-        $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
-        return $this->redirect($routeBuilder->setController(OrderCrudController::class)->generateUrl());
+        return parent::index();
+        //$routeBuilder = $this->get(CrudUrlGenerator::class)->build();
+       // return $this->redirect($routeBuilder->setController(OrderCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard
