@@ -1,6 +1,2 @@
 composer/package-versions-deprecated: Generating version class...
 composer/package-versions-deprecated: ...done generating version class
-
-Some files may have been created or updated to configure your new packages.
-Please review, edit and commit them: these files are yours.
-
