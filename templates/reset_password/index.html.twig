@@ -1,0 +1,30 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Mot de passe oublié {% endblock %}
+
+{% block content %}
+
+    <style>
+    .block-small{
+
+        max-width: 600px;
+        margin: 0 auto ;
+    }
+    </style>
+    <div class="block-small">
+    {% for message in app.flashes('notice') %}
+    <div class="alert alert-info">{{message}}</div>
+    {% endfor %}
+        <form method="post">
+            <h1 class="h3 mb-3 font-weight-normal">Rénitialiser mon mot de passe</h1>
+            <label for="inputEmail">Votre Email</label>
+            <input type="email"  name="email" id="inputEmail" class="form-control" placeholder="votre email" required autofocus >
+
+            <button class="btn btn-lg btn-info btn-block mt-3" type="submit">
+                Valider
+            </button>
+            <hr>
+            <p class="text-center">Ou souhaitez-vous<a href="{{path('app_login')}}">vous connectez</a></p>
+        </form>
+    </div>
+{% endblock %}

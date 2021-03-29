@@ -1,0 +1,45 @@
+body{
+    position: relative;
+}
+
+.navbar-item-custom ,.navbar-item-custom a {
+   color: #fff; 
+}
+.footer-custom{
+    text-align: center;
+    position: fixed;
+    
+    bottom: 0;
+    width: 100%;
+    background-color: #dfeaff ;
+    padding-top: 5px;
+}
+
+.product-item h5{
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.product-item span{
+    
+    font-size: 14px;
+}
+.chart-icon
+{
+    height: 20px;
+    padding-left: 20px;
+}
+.block-small
+{
+    max-width: 600;
+    margin: 0 auto; 
+}
+
+.chart-icon{
+    height: 20px;
+    padding-left: 20px;
+}
+
+
+    
+    

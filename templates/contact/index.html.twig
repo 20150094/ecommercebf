@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nous contacter{% endblock %}
+
+{% block content %}
+    <h1>Nous contacter</h1>
+    <p>N'hésitez pas à prendre contact avec notre équipe, nous vous répondrons dans les meilleiurs délais</p>
+
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info">{{message}}</div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-md-8">
+            {{ form(form) }}
+        </div>
+        <div class="col-md-4">
+            <strong>contact DJESM-ELECTRONICS</strong>
+            <hr>
+            tel: 6 75 78 78 78<br>
+            situé à yaoundé :XXXXXXXXXXXXX</br>
+            email: contact@DJESM-ELECTRONICS.fr
+
+        </div>
+    </div>
+
+{% endblock %}

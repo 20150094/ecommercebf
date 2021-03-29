@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title  %} la boutique française{% endblock %}
+{% block content  %}
+
+    <style>
+
+        .account-item
+        {
+            background-color: #f1f2f6;
+            padding: 50px;
+        }
+        .account-item a
+        {
+            text-transform: uppercase;
+            font-size: 14px;
+            color: #4b6584;
+            font-weight: bold;
+        }
+        .account-item a:hover
+        {
+
+            color: #778ca3;
+            text-decoration: none;
+        }
+
+    </style>
+
+<h1> Mon Compte</h1>
+
+ {% if is_granted('ROLE_ADMIN') %}
+<small>  <a href="/admin">Vous êtes un administrateur, accédé au backoffice ?</a></small></br>
+ {% endif %}
+Bienvenue {{app.user.firstName}} dans votre Compte<br/>
+
+<hr>
+
+
+
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="account-item" class="text-center" >
+            <img src="{{ asset('assets/Img/secure.png')}}" alt="Modifier mon mot de passe" width="30px">
+            <a href="{{path('account_password')}}">Modifier mon mot de passe</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+
+        <div class="account-item" class="text-center">
+            <img src="{{ asset('assets/Img/adress-book.png')}}" width="30px"alt="Modifier mes adresses" >
+            <a href="{{path('account_adresses')}}">Modifier mes adresses</a>
+        </div>
+    </div>
+    <div class="col-md-4">
+
+        <div class="account-item"class="text-center">
+            <img src="{{ asset('assets/Img/purchase.png')}}" alt="Mes commandes" width="30px">
+            <a href="{{path('account_order')}}">Mes commandes</a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

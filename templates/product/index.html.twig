@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits!{% endblock %}
+
+{% block content %}
+<style>
+        .product-item h5
+    {
+        text-transform: uppercase;
+        font-size: 15px;
+        margin-bottom: 1px;
+    }
+        .product-item 
+    {
+    
+        font-size: 50px;
+    }
+
+        .product-item .product-subtitle
+    {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+        .product-item .product-price
+    {
+        
+        font-size: 15px;
+        font-weight: bold;
+    }
+        .product-container
+    {
+    
+        margin-bottom: 125px;
+    }
+    </style>
+<h3> Nos meilleures ventes</h3>
+<div class="row">
+            <div class="col-md-3">
+                <h3>Filtrer</h3>
+                {{form(form)}}
+            </div>
+
+
+            <div class="col-md-9">
+                <h3>Nos Produits</h3> 
+        
+        <div class="row product-container"> 
+        
+            {% for product in products %}
+
+
+
+            <div class="col-md-4">
+
+                {% include 'product/single_product.html.twig' %}
+            
+            </div>
+
+
+            {% endfor %}
+        </div>
+            </div>
+</div>
+
+        
+
+{% endblock  %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{product.name}}{% endblock %}
+
+{% block content %}
+<style>
+        .col-md-7 h4
+    {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 20px;
+    }
+       
+</style>
+
+  <h1>{{product.name}}</h1> 
+   Produits
+ 
+  <div class="row"> 
+  
+    <div class="col-md-5">
+        <img src="/Images/{{product.illustration}}" alt="{{product.name}}" class="img-fluid">
+    </div>    
+    <div class="col-md-7 my-auto">
+       <h3> {{product.name}}</h3>
+       <h3> {{product.subtitle}}</h3>
+       <h4> {{(product.prix/100) |number_format(2,',','.')}} fcfa</h4>
+       <hr>
+       <p>
+        {{product.description}}
+       </p>
+       <a href="{{path('add_to_cart',{'id':product.id})}}" class="btn btn-primary">Ajouter au panier</a>
+    </div>
+
+</div>
+<hr>
+<h3> Nos meilleures ventes</h3>
+
+<p> découvrez les articles les plus vendus</p>
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          {% for product in products %}
+            <div class="col-md-4">
+                {% include 'product/single_product.html.twig' %}
+            </div>
+
+          {% endfor %}  
+        </div><!-- /.row -->
+
+
+{% endblock  %}
