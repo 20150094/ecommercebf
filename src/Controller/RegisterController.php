@@ -42,7 +42,9 @@ class RegisterController extends AbstractController
                 $user->setPassword($encoded);
             
                 $doctrine=$this->getDoctrine()->getManager();
+
                 $doctrine->persist($user);
+
                 $doctrine->flush();
                 $mail=new Mail();
                 $content="Bonjour".' '.$user->getFirstname()."</br> Bienvenu la première plateforme dédié à l'électronique en Afrique</br></br>";
