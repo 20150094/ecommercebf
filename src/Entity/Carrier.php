@@ -34,7 +34,7 @@ class Carrier
 
     public function __toString()
     {
-        return $this->getName().'[br]'.$this->getDescription().'[br]'.number_format(($this->getPrix()/100),2,',',',').' FCFA';
+        return $this->getName().'[br]'.$this->getDescription().'[br]'.number_format(($this->getPrix()/100),2,',',',').' €';
     }
     public function getId(): ?int
     {

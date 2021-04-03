@@ -40,8 +40,8 @@ Retrouver l'ensemble des produits que vous avez acheté
               <img src={{asset('/assets/Img/add.png')}} height="15px" alt="Ajouter un produit">
           </a>
       </td>
-      <td>{{(product.product.prix/100) |number_format(2,',','.')}} fcfa</td>
-      <td>{{((product.product.prix*product.quantity)/100) |number_format(2,',','.')}} fcfa</td>
+      <td>{{(product.product.prix/100) |number_format(2,',','.')}} €</td>
+      <td>{{((product.product.prix*product.quantity)/100) |number_format(2,',','.')}} €</td>
     <td>
     <a href="{{path('delete_to_cart',{'id':product.product.id})}}">
         <img src={{asset('/assets/Img/delete.png')}} height="18px" alt="Supprimer mon produit">
@@ -58,7 +58,7 @@ Retrouver l'ensemble des produits que vous avez acheté
 
 <div class="text-right mb-5">
 <b> Nombre de produit : </b><strong>{{cart|length}}</strong><br>
-<b> Total de mon panier : </b> <strong>{{( total /100) |number_format(2,',','.')}} fcfa</strong></br></br></br>
+<b> Total de mon panier : </b> <strong>{{( total /100) |number_format(2,',','.')}} € |  {{((total/100)*655.51)  |number_format(2,',','.')}} FCFA</strong></br></br></br>
 
 <a href="{{path("order")}}" class="btn btn-success btn-block">Valider mon panier</a>
 </div>

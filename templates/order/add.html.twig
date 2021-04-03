@@ -4,14 +4,14 @@
     <script src="https://js.stripe.com/v3/"></script>
 {% endblock %}
 
-{% block title %}paiement de ma commande{% endblock %}
+{% block title %}Paiement de ma commande{% endblock %}
 
 {% block content %}
     <style>
     .form-check
     {
         background-color: #f4f8ff;
-        padding-left: 20px 65px;
+        padding-left: 20px;
         margin-top: 5px;
         
     }
@@ -43,7 +43,7 @@
         <div class="form-check">
             {{carrier.name}}<br/>
             {{carrier.description}}<br/>
-            {{(carrier.prix/100)| number_format(2,',','.')}} FCFA<br/>
+            {{(carrier.prix/100)| number_format(2,',','.')}} €<br/>
         </div>
         
     </div>
@@ -73,17 +73,84 @@
                     
                     <div class="col-2 my-auto"> 
 
-                     {{((product.product.prix*product.quantity)/100) |number_format(2,',','.')}} FCFA
+                     {{((product.product.prix*product.quantity)/100) |number_format(2,',','.')}} €
                     </div>
                 </div> 
                 {% set total=total+(product.product.prix * product.quantity)%}
                 {% endfor %}
             </div>
             <br>
-            <strong>Sous-Total:   </strong>{{(total/100)|number_format(2,',','.')}} FCFA<br/>
-            <strong>Livraison:   </strong>{{(carrier.prix/100)|number_format(2,',','.')}} FCFA<br/><br/>
-            <strong>Total:   </strong>{{((total/100)+(carrier.prix/100))|number_format(2,',','.')}} FCFA<br/>
-        <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer | {{((total/100)+(carrier.prix/100))|number_format(2,',','.')}} FCFA</a>
+            <strong>Sous-Total:   </strong>{{(total/100)|number_format(2,',','.')}} €<br/>
+            <strong>Livraison:   </strong>{{(carrier.prix/100)|number_format(2,',','.')}} €<br/><br/>
+            <strong>Total:   </strong>{{((total/100)+(carrier.prix/100))|number_format(2,',','.')}} € |  {{(((total/100)+(carrier.prix/100))*655.51)  |number_format(2,',','.')}} FCFA<br/>
+        <a class="btn btn-success btn-block mt-3" id="checkout-button">Payer par carte | {{((total/100)+(carrier.prix/100))|number_format(2,',','.')}} €</a>
+
+
+
+        </br></br></br></br>
+
+
+
+
+
+
+
+
+
+
+
+        <div id="smart-button-container">
+            <div style="text-align: center;">
+                <div id="paypal-button-container"></div>
+            </div>
+        </div>
+        <script src="https://www.paypal.com/sdk/js?client-id=AfiGT6_hDD9e-b8DUsu_RWtxmmHJOy1j250iMTz2yb4NTXjn0bAnNhaFVmq5hBr9qZ5nZdxvlyKJd1Dl&disable-funding=credit,card&currency=EUR"></script>
+        <script>
+            function initPayPalButton() {
+                paypal.Buttons({
+                    style: {
+                        //shape: 'rect',
+                       // color: 'gold',
+                       // layout: 'vertical',
+                        label: 'pay',
+                        color: 'blue',
+                        shape: 'pill'
+
+                    },
+
+                    createOrder: function (data, actions) {
+                        return actions.order.create({
+                            purchase_units : [{
+                                amount: {
+                                    value: {{ ((total/100)+(carrier.prix/100)) }},
+
+                                }
+                            }]
+                        });
+                    },
+
+                    onApprove: function(data, actions) {
+                        return actions.order.capture().then(function(details) {
+                            //alert('votre paiement effectué avec success référence commande');
+                            window.location.replace("http://127.0.0.1:8000/paypal/{{ name }}/{{ reference }}/{{ email }}/{{ telephone }}")
+
+                        });
+                    },
+
+                    onCancel: function (data) {
+                        alert('votre paiement a échoué cliquez pour être rediriger vers vos commandes pour réessayer');
+                        window.location.replace('{{path('order')}}');
+                    }
+                }).render('#paypal-button-container');
+            }
+            initPayPalButton();
+        </script>
+
+
+
+
+
+
     </div>
 </div>
 {% endblock %}
@@ -91,7 +158,7 @@
 
 {% block script %}
 <script type="text/javascript">
-    var stripe = Stripe("pk_test_51ITNt2DX5Hn59vctzRQdziBNt4jDPMhrPwg8D8zCAXQ9eR7VRlLDIrlSZ179Bs84gMW8FHk9v4Y92gV297r5NuA100NNvIuFAz");
+    var stripe = Stripe("pk_live_51IbTFlDtpGNDFtyneQxDHKPbkrApq2c0Ty3L8H25DCQuCro7aLzWgxNiTNmdcjduRlkZgUnW5NtJT3iVsR4CAeHF00Xusj9mim");
     var checkoutButton = document.getElementById("checkout-button");
     checkoutButton.addEventListener("click", function () {
       fetch("/commande/create-session/{{reference}}",{

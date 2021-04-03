@@ -124,7 +124,11 @@ class OrderController extends AbstractController
                 'cart'=>$cart->getFull(),
                 'carrier'=>$carriers,
                 'delivery'=>$delivery_content,
-                'reference'=>$order->getReference()
+                'reference'=>$order->getReference(),
+                'name'=>$order->getUser()->getFullName(),
+                'email'=>$order->getUser()->getEmail(),
+                'telephone'=>$order->getUser()->getTelephone()
+
             ]);
                 
         }

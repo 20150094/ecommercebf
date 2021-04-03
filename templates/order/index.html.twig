@@ -24,9 +24,9 @@
         margin-top: 22px;
     }
     </style>
-    <h2> je passe ma commande</h2>
+    <h2> Je passe ma commande</h2>
 
-    <p>choisissez vos préférences  avant de passer votre commande sur la boutique</p>
+    <p>Choisissez vos préférences  avant de passer votre commande sur la boutique</p>
     <hr>
 <div class="row">
     <div class="col-md-6">
@@ -39,7 +39,7 @@
             {{form_end(form)}}
         {% endset %}
             {{formHtml | replace({'[br]':'<br/>'})| raw }}
-        <b>Choisir mon transporteur</b>
+
     </div>
 
 <div class="col-md-6">
@@ -59,8 +59,6 @@
             
             {% endfor %}
       </div>
-            
-            <b>Boutton pour payer</b>
      </div>
   </div>
 </div>

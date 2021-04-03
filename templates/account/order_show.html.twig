@@ -3,7 +3,7 @@
 {% block title  %}Ma commande{% endblock %}
 {% block content  %}
 <a href="{{path('account_order')}}">Retour</a>
-<h3>  commande {{order.reference}}</h3>
+<h3>  Commande {{order.reference}}</h3>
 <hr>
 <strong>Statut de la commande :</strong>
   {% if order.state == 1 %}

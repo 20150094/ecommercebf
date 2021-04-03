@@ -3,49 +3,50 @@ namespace App\Classe;
 
 class Sms
 {
-    public function send($Receivernumber,$sms)
+    public function send($content,$number)
     {
-        $api_key = 'MjAxNTAwOTQ6dHA0NjQ5VDIwIw==';
-        $url = 'https://app.techsoft-web-agency.com/sms/api';
 
-        /*
-            Inclure les deux première étape ici (authentification et lien api)
-        */
-// Etape 3: Le sender ID ou nom d'envoi (11 caractères, espaces compris). ATTENTION: Le sender id doit être enregistré et validé (Menu ID expediteur / Nom d'envoi) dans votre compte sinon une erreur sera généré.
-        $from = 'TECHSOF-SMS';
+        //config
+        $url        = 'https://api.allmysms.com/http/9.0/sendSms/';
+        $login      = 'djsemelectronics';                              //votre identifiant allmysms
+        $apiKey     = '70fef89e052bedf';                             //votre clé d'API allmysms
+        $message    = $content;    //le message SMS
+        $sender     = 'DJSEM';                               //l’expéditeur, attention pas plus de 11 caractères alphanumériques
+        $msisdn     = $number;                            //numéro de téléphone du destinataire
+        $smsData    = "<DATA>
+           <MESSAGE><![CDATA[" . $message . "]]></MESSAGE>
+           <TPOA>" . $sender . "</TPOA>
+           <SMS>
+              <MOBILEPHONE>" . $msisdn . "</MOBILEPHONE>
+           </SMS>
+        </DATA>";
 
-//Etape 4: precisez le numéro de téléphone (Format international)
-
-
-// Construire le corps de la requête
-        $sms_body = array(
-            'action' => 'send-sms',
-            'api_key' => $api_key,
-            'to' => $Receivernumber,
-            'from' => $from,
-            'sms' => $sms
+        $fields = array(
+            'login'    => $login,
+            'apiKey'   => $apiKey,
+            'smsData'  => $smsData,
         );
 
-        $send_data = http_build_query($sms_body);
-        $gateway_url = $url . "?" . $send_data;
-
+        $fieldsString = http_build_query($fields);
 
         try {
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $gateway_url);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_HTTPGET, 1);
-            $output = curl_exec($ch);
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, count($fields));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $fieldsString);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);    // permet d’éviter le temps d'attente par défaut : 300 sec - optionnel
+            curl_setopt($ch, CURLOPT_LOW_SPEED_LIMIT, 1024); // limite de detection des connexions lentes, en octets/sec (ici : 1 ko) - optionnel
+            curl_setopt($ch, CURLOPT_LOW_SPEED_TIME, 1);     // coupe la connexion si en dessous de CURLOPT_LOW_SPEED_LIMIT pendant plus de CURLOPT_LOW_SPEED_TIME - optionnel
 
-            if (curl_errno($ch)) {
-                $output = curl_error($ch);
-            }
+            $result = curl_exec($ch);
+
+            //echo $result;
+
             curl_close($ch);
 
-            var_dump($output);
-
-        }catch (Exception $exception){
-            echo $exception->getMessage();
+        } catch (Exception $e) {
+            echo 'Api allmysms injoignable ou trop longue a repondre ' . $e->getMessage();
         }
 
     }

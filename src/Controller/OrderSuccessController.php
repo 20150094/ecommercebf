@@ -43,16 +43,16 @@ class OrderSuccessController extends AbstractController
                 $this->entityManager->flush();
            
                 $mail=new Mail();
-                $content="Bonjour ".$order->getUser()->getFirstname()."</br>votre commande référence N° ".$order->getReference()." a été validée avec sucess</br></br>";
+                $sms=new Sms();
+                $content="Bonjour ".$order->getUser()->getFirstname()." votre commande référence N° ".$order->getReference()." a été validée avec sucess ";
                 $mail->send($order->getUser()->getEmail(),$order->getUser()->getFirstname(),'Votre commande à été Valider',$content);
 
-                $Receivernumber=strval ($order->getUser()->getTelephone());
-                $sms="Bonjour; </br> Votre commande référence N° ".$order->getReference()." a été validée avec sucess</br>";
-                $sms.="Et vous sera bientôt livrée. Vous pouvez suivre l'état d'avancement du traitement de cette dernière dans votre espaca";
 
-                $Sms=new Sms();
+                $number='+33'.$this->getUser()->getTelephone();
+                $sms->send($content,strval($number));
 
-                ($Sms->send($Receivernumber,$Sms));
+
+
            
             }
            

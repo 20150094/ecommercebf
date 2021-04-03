@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation de  commande{% endblock %}
+
+{% block content %}
+    <h2>Confirmation de commande</h2>
+    <p>
+        Bonjour <strong>{{name}}  </strong>,<br/><br/>
+        Nous vous remercions pour votre commande n°<strong>{{reference}}</strong>,<br/>
+        une confirmation vient de vous être envoyée par email à l'adresse<strong> {{email}} et par sms au numéro {{ telephone }}</strong>,
+    <hr>
+
+    Pour suivre votre commande, rendez vous dans votre <a href="{{path('account_order')}}">compte</a>
+    </p>
+
+
+{% endblock %}
