@@ -25,7 +25,7 @@ class OrderType extends AbstractType
             ])
 
             ->add('carrier',EntityType::class,[
-                'label'=>"choissez votre transporteur",
+                'label'=>"Choissez votre transporteur",
                 'required'=>true,
                 'class'=>Carrier::class,
                 'multiple'=>false,

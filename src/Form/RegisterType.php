@@ -20,35 +20,35 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('email',EmailType::class,
-            ['label'=>'email',
-            'attr'=>['placeholder'=>'merci de saisir votre email']
+            ['label'=>'Email',
+            'attr'=>['placeholder'=>'Merci de saisir votre email']
             ])
 
             ->add('telephone',TelType::class,
-            ['label'=>'telephone',
+            ['label'=>'Telephone',
             
-            'attr'=>['placeholder'=>'merci de saisir votre numéro de téléphone au format international +237678968545']
+            'attr'=>['placeholder'=>'Merci de saisir votre numéro de téléphone au format international']
             ])
             ->add('password',RepeatedType::class,
             ['type'=>PasswordType::class,
             'invalid_message'=>'les mot de passe doivent être identique',
             'required'=>true,
 
-            'first_options'=>['label'=>'mot de passe',
-            'attr'=>['placeholder'=>'merci de saisir votre mot de passe']],
-            'second_options'=>['label'=>'confirmer votre mot de passe',
-            'attr'=>['placeholder'=>'merci de confirmer votre mot de passe']]
+            'first_options'=>['label'=>'Mot de passe',
+            'attr'=>['placeholder'=>'Merci de saisir votre mot de passe']],
+            'second_options'=>['label'=>'Confirmer votre mot de passe',
+            'attr'=>['placeholder'=>'Merci de confirmer votre mot de passe']]
             ])
 
             
 
             ->add('firstName',TextType::class,
-            ['label'=>'prenom',
-            'attr'=>['placeholder'=>'merci de saisir votre prenom']
+            ['label'=>'Prenom',
+            'attr'=>['placeholder'=>'Merci de saisir votre prenom']
             ])
             ->add('lastName',TextType::class,
-            ['label'=>'nom',
-            'attr'=>['placeholder'=>'merci de saisir votre nom']
+            ['label'=>'Nom',
+            'attr'=>['placeholder'=>'Merci de saisir votre nom']
             ])
             ->add('submit',SubmitType::class,
             ['label'=>"s'inscrire",

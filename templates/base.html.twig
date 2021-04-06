@@ -1,6 +1,23 @@
 <!doctype html>
 <html lang="fr">
 <head>
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '782773675666299');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+                   src="https://www.facebook.com/tr?id=782773675666299&ev=PageView&noscript=1"
+        /></noscript>
+    <!-- End Facebook Pixel Code -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="le monde de l'électronique">
@@ -116,7 +133,7 @@
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
  
-    <div class="container marketing  {% if block('carousel') is not defined %}mt-5 {% endif %}">
+    <div class="container marketing  {% if block('carousel') is not defined %}{% endif %}">
         {% block content %} {% endblock  %}
 
         <!-- /END THE FEATURETTES -->
@@ -124,10 +141,11 @@
     </div><!-- /.container -->
     
     <!-- FOOTER -->
+
     <footer class="footer-custom">
-       
-        <small><p>&copy; 2020-2021 DJSEM ELECTRONICS LTD<br></small>
-        <small> <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p></small>
+
+        <p><small>&copy; 2021 DJSEM ELECTRONICS LTD<br></small>
+        <small> <a href="{{ path('CGV') }}">CGV</a> </p>&middot; </small> <!-- //<a href="#">Terms</a> -->
     </footer>
 </main>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
