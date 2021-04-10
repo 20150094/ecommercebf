@@ -17,7 +17,7 @@ class Mail
             'Messages' => [
                 [
                     'From' => [
-                        'Email' => "ghislain-brice.fohom-kammeugne@isg.fr",
+                        'Email' => "contact@djsem-electronics.com",
                         'Name' => "DJSEM-ELECTRONICS"
                     ],
                     'To' => [

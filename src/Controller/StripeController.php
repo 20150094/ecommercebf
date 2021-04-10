@@ -20,7 +20,7 @@ class StripeController extends AbstractController
     {
         
         $product_for_stripe=[];
-        $YOUR_DOMAIN = 'http://127.0.0.1:8000';
+        $YOUR_DOMAIN = 'https:/www.djsem-electronic.com';
         
         $order= $entityManager
         ->getRepository(Order::class)
