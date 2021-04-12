@@ -53,7 +53,7 @@ DirectoryIndex index.php
     # Rewrite all other queries to the front controller.
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ %{ENV:BASE}/index.php [L]
-    RewriteEngine On
+
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
