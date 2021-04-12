@@ -10,7 +10,7 @@ require dirname(__DIR__).'/vendor/autoload.php';
 (new Dotenv())->bootEnv(dirname(__DIR__).'/.env');
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
     $_SERVER['HTTPS'] = 'on';
-
+    $_SERVER['SERVER_PORT'] = 443;
 }
 
 if ($_SERVER['APP_DEBUG']) {
