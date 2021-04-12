@@ -75,7 +75,7 @@ class StripeController extends AbstractController
             ],
             'mode' => 'payment',
             'success_url' => $YOUR_DOMAIN . '/commande/merci/'.$reference,
-            'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/'.$reference,
             ]);
 
            
