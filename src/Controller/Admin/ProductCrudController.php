@@ -27,8 +27,8 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('name'),
             SlugField::new('Slug')->setTargetFieldName('name'),
             ImageField::new('illustration')
-            ->setBasePath('Images/')
-            ->setUploadDir(' https://www.djsem-electronic.com/public/Images/')
+            ->setBasePath(' https://www.djsem-electronic.com/Images/')
+            ->setUploadDir('public/Images/')
             ->setUploadedFileNamePattern('[randomhash].[extension]')
             ->setRequired(false),
             TextField::new('subtitle'),
