@@ -12,11 +12,8 @@ require dirname(__DIR__).'/vendor/autoload.php';
     $_SERVER['HTTPS'] = 'on';
     $_SERVER['SERVER_PORT'] = 443;
 }*/
-
-if(isset($_SERVER['HTTPS'])) {
-    if ($_SERVER['HTTPS'] == "on") {
-        $secure_connection = true;
-    }
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && ('https' == $_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+    return true;
 }
 if ($_SERVER['APP_DEBUG']) {
     umask(0000);
