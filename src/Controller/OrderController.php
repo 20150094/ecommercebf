@@ -117,31 +117,16 @@ class OrderController extends AbstractController
            
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             
-            $this->entityManager->flush();
-            $order=  $this->entityManager
-                ->getRepository(Order::class)
-                ->findOneByReference($reference);
+           // $this->entityManager->flush();
+            //$order=  $this->entityManager
+               // ->getRepository(Order::class)
+               // ->findOneByReference($reference);
 
 
 
-            dd($order->getOrderDetails());
-            die();
+            //dd($order->getOrderDetails());
+           // die();
             return $this->render('order/add.html.twig',[
                 'cart'=>$cart->getFull(),
                 'carrier'=>$carriers,
