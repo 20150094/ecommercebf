@@ -46,6 +46,7 @@ class StripeController extends AbstractController
                     'quantity' => $product->getQuantity(),
                 ];
 
+
         }
 
 

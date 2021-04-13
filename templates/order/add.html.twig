@@ -2,6 +2,7 @@
 
 {% block javascript %}
     <script src="https://js.stripe.com/v3/"></script>
+    <a href="https://www.enable-javascript.com/">
 {% endblock %}
 
 {% block title %}Paiement de ma commande{% endblock %}
@@ -161,7 +162,7 @@
     var stripe = Stripe("pk_live_51IbTFlDtpGNDFtyneQxDHKPbkrApq2c0Ty3L8H25DCQuCro7aLzWgxNiTNmdcjduRlkZgUnW5NtJT3iVsR4CAeHF00Xusj9mim");
     var checkoutButton = document.getElementById("checkout-button");
     checkoutButton.addEventListener("click", function () {
-      fetch("./commande/create-session/13042021-6075777a4ee44",{
+      fetch("/commande/create-session/13042021-6075777a4ee44",{
         method: "POST",
       })
         .then(function (response) {
