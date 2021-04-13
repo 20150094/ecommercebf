@@ -64,7 +64,7 @@ class StripeController extends AbstractController
         
         Stripe::setApiKey('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');
             
-            
+
             
             
             $checkout_session = Session::create([
@@ -74,8 +74,8 @@ class StripeController extends AbstractController
                 $product_for_stripe
             ],
             'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN .'/paypal/'.$order->getUser()->getFullName()/$order->getUser()->getReference()/$order->getUser()->getEmail()/$order->getUser()->getTelephone(),                      //'/commande/merci/{CHECKOUT_SESSION_ID}',
-            'cancel_url' => $YOUR_DOMAIN .'/paypal/'.$order->getUser()->getFullName()/$order->getUser()->getReference()/$order->getUser()->getEmail()/$order->getUser()->getTelephone(),
+            'success_url' => $YOUR_DOMAIN .'/paypal/'.$order->getUser()->getFullName()/$order->getReference()/$order->getUser()->getEmail()/$order->getUser()->getTelephone(),                      //'/commande/merci/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => $YOUR_DOMAIN .'/paypal/'.$order->getUser()->getFullName()/$order->getReference()/$order->getUser()->getEmail()/$order->getUser()->getTelephone(),
             ]);
 
 
