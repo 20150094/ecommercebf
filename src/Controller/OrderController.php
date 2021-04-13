@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Order;
 use App\Entity\Orderdetails;
 use App\Classe\Cart ;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -115,11 +116,32 @@ class OrderController extends AbstractController
 
            
             }
-            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             
-            $this->entityManager->flush();  
+            $this->entityManager->flush();
+            $order=  $this->entityManager
+                ->getRepository(Order::class)
+                ->findOneByReference($reference);
 
+
+
+            dd($order->getOrderDetails());
+            die();
             return $this->render('order/add.html.twig',[
                 'cart'=>$cart->getFull(),
                 'carrier'=>$carriers,

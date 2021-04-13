@@ -18,18 +18,18 @@ class StripeController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager,Cart $cart,$reference): Response
     {
-        
+
         $product_for_stripe=[];
-        $YOUR_DOMAIN = "https://djsem-electronic.com";
-        
+        $YOUR_DOMAIN =  "http://127.0.0.1:8000" ;//"https://djsem-electronic.com";
         $order= $entityManager
         ->getRepository(Order::class)
         ->findOneByReference($reference);
+        dd($order);
         if(!$order)
         {
             new JsonResponse(['error' => 'order']);
         }
-        
+
         foreach($order->getOrderDetails()->getValues() as $product)
         {   $product_object=$entityManager
             ->getRepository(Product::class)
@@ -43,30 +43,18 @@ class StripeController extends AbstractController
                         'images' => [$YOUR_DOMAIN."/Images/".$product_object->getIllustration()],
                     ],
                     ],
-                    'quantity' => $product->getQuantity(),  
+                    'quantity' => $product->getQuantity(),
                 ];
 
-
-                $product_for_stripe[]=[
-                    'price_data' => [
-                        'currency' => 'eur',
-                        'unit_amount' => $order->getCarrierPrice(),
-                        'product_data' => [
-                            'name' => $order->getCarrierName(),
-                            'images' => [$YOUR_DOMAIN],
-                        ],
-                        ],
-                        'quantity' => 1,  
-                    ];
         }
-        
-        
-        
-        Stripe::setApiKey('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');
-            
 
-            
-            
+
+
+        Stripe::setApiKey('sk_test_51IbTFlDtpGNDFtynjZWeBopVRugbMskXsB06YikqijydKVnLzs4kFQMlTaZwDpCDvp8tfGia66EGmBNSzdaLytvG00vV86wRed');
+
+
+
+
             $checkout_session = Session::create([
             'customer_email'=>$this->getUser()->getEmail(),
             'payment_method_types' => ['card'],
@@ -74,14 +62,17 @@ class StripeController extends AbstractController
                 $product_for_stripe
             ],
             'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN ,                      //'/commande/merci/{CHECKOUT_SESSION_ID}',
-            'cancel_url' => $YOUR_DOMAIN ,
+            'success_url' => $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
             ]);
 
 
-        $order->setStripeSessionId($checkout_session->id); 
-        $entityManager->flush();    
+        $order->setStripeSessionId($checkout_session->id);
+        $entityManager->flush();
         $response = new JsonResponse(['id' => $checkout_session->id]);
+
+        dd($checkout_session);
+        exit();
         return $response;
     }
 }
