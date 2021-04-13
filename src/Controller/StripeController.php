@@ -74,8 +74,8 @@ class StripeController extends AbstractController
                 $product_for_stripe
             ],
             'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN .'/paypal/'.$order->getUser()->getFullName()/$order->getReference()/$order->getUser()->getEmail()/$order->getUser()->getTelephone(),                      //'/commande/merci/{CHECKOUT_SESSION_ID}',
-            'cancel_url' => $YOUR_DOMAIN .'/paypal/'.$order->getUser()->getFullName()/$order->getReference()/$order->getUser()->getEmail()/$order->getUser()->getTelephone(),
+            'success_url' => $YOUR_DOMAIN ,                      //'/commande/merci/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => $YOUR_DOMAIN ,
             ]);
 
 
