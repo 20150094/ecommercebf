@@ -20,7 +20,7 @@ class StripeController extends AbstractController
     {
 
         $product_for_stripe=[];
-        $YOUR_DOMAIN = "https://djsem-electronic.com";
+        $YOUR_DOMAIN = "http://127.0.0.1:8000";
         $order= $entityManager
         ->getRepository(Order::class)
         ->findOneByReference($reference);
