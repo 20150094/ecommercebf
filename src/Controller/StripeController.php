@@ -18,12 +18,11 @@ class StripeController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager,Cart $cart,$reference): Response
     {
-
         $product_for_stripe=[];
-        $YOUR_DOMAIN = "http://127.0.0.1:8000";
+        $YOUR_DOMAIN = "https://www.djsem-electronic.com";
         $order= $entityManager
         ->getRepository(Order::class)
-        ->findOneByReference($reference);
+        ->findOneByReference(strval($reference));
 
         if(!$order)
         {
@@ -48,10 +47,20 @@ class StripeController extends AbstractController
 
 
         }
+        $product_for_stripe[]=[
+            'price_data' => [
+                'currency' => 'eur',
+                'unit_amount' => $order->getCarrierPrice(),
+                'product_data' => [
+                    'name' => $order->getCarrierName(),
+                    'images' => [$YOUR_DOMAIN],
+                ],
+            ],
+            'quantity' => 1,
+        ];
+        //dd($product_for_stripe);
 
-
-
-        Stripe::setApiKey('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');
+        Stripe::setApiKey('sk_test_51IbTFlDtpGNDFtynjZWeBopVRugbMskXsB06YikqijydKVnLzs4kFQMlTaZwDpCDvp8tfGia66EGmBNSzdaLytvG00vV86wRed');
 
 
 
