@@ -20,8 +20,8 @@ DirectoryIndex index.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{HTTPS} off
-    RewriteCond %{HTTP:X-Forwarded-SSL} !on
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{REQUEST_URI} ^/
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     #RewriteCond %{HTTP:X-Forwarded-Proto} !=https
