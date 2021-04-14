@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfaff31fb93116f86c558da66861f340",
+    "content-hash": "959eb5c9aa6c9ad42222e40d776c706f",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -3060,19 +3060,19 @@
         },
         {
             "name": "symfony/apache-pack",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/apache-pack.git",
-                "reference": "450b8490bd887de3f29390e254f9a5025353c173"
+                "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/apache-pack/zipball/450b8490bd887de3f29390e254f9a5025353c173",
-                "reference": "450b8490bd887de3f29390e254f9a5025353c173",
+                "url": "https://api.github.com/repos/symfony/apache-pack/zipball/3aa5818d73ad2551281fc58a75afd9ca82622e6c",
+                "reference": "3aa5818d73ad2551281fc58a75afd9ca82622e6c",
                 "shasum": ""
             },
-            "type": "metapackage",
+            "type": "symfony-pack",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -3082,7 +3082,7 @@
                 "issues": "https://github.com/symfony/apache-pack/issues",
                 "source": "https://github.com/symfony/apache-pack/tree/master"
             },
-            "time": "2017-11-23T14:58:24+00:00"
+            "time": "2017-12-12T01:46:35+00:00"
         },
         {
             "name": "symfony/asset",
