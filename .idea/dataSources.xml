@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="projet ecommerce" uuid="c1a17317-107f-4871-ba46-3d9c214a5a49">
+    <data-source source="LOCAL" name="ecommercebf" uuid="c1a17317-107f-4871-ba46-3d9c214a5a49">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
@@ -11,7 +11,7 @@
         <property name="serverTimezone" value="UTC" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="Ecommercebf" uuid="ba9ab166-46be-432c-bf33-c12b038480cd">
+    <data-source source="LOCAL" name="djsem-electronic" uuid="3e049734-d7b3-474e-bac2-95f1319db0a6">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
