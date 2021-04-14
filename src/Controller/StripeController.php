@@ -76,11 +76,11 @@ class StripeController extends AbstractController
             'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
             ]);
 
-
+        dd( $checkout_session);
         $order->setStripeSessionId($checkout_session->id);
         $entityManager->flush();
         $response = new JsonResponse(['id' => $checkout_session->id]);
-        dd($response);
+
         return $response;
     }
 }
