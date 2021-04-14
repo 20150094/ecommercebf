@@ -58,7 +58,7 @@ class StripeController extends AbstractController
             ],
             'quantity' => 1,
         ];
-        dd($product_for_stripe);
+
 
         Stripe::setApiKey('sk_test_51IbTFlDtpGNDFtynjZWeBopVRugbMskXsB06YikqijydKVnLzs4kFQMlTaZwDpCDvp8tfGia66EGmBNSzdaLytvG00vV86wRed');
 
@@ -80,7 +80,7 @@ class StripeController extends AbstractController
         $order->setStripeSessionId($checkout_session->id);
         $entityManager->flush();
         $response = new JsonResponse(['id' => $checkout_session->id]);
-
+        dd($response);
         return $response;
     }
 }
