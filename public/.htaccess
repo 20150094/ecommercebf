@@ -21,7 +21,7 @@ DirectoryIndex index.php
     RewriteEngine On
     RewriteCond %{HTTPS} off
     #RewriteCond %{HTTP:X-Forwarded-Proto} !https
-    RewriteRule ^ https://${www.djsem-electronic.com}/$1 [L,R=301]
+    RewriteRule (.*) https://${www.djsem-electronic.com}/$1 [L,R=301]
 
     #RewriteCond %{HTTP:X-Forwarded-Proto} !=https
     #RewriteCond %{HTTPS} off
