@@ -58,7 +58,7 @@ class StripeController extends AbstractController
             ],
             'quantity' => 1,
         ];
-        //dd($product_for_stripe);
+        dd($product_for_stripe);
 
         Stripe::setApiKey('sk_test_51IbTFlDtpGNDFtynjZWeBopVRugbMskXsB06YikqijydKVnLzs4kFQMlTaZwDpCDvp8tfGia66EGmBNSzdaLytvG00vV86wRed');
 
