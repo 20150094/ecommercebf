@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use GuzzleHttp\Psr7\Request;
 use Stripe\Stripe;
 use App\Entity\Order;
 use App\Entity\Product;
@@ -16,8 +17,9 @@ class StripeController extends AbstractController
     /**
      *@Route("/commande/create-session/{reference}", name="stripe_create-session")
      */
-    public function index(EntityManagerInterface $entityManager,Cart $cart,$reference): Response
+    public function index(\Symfony\Component\HttpFoundation\Request $request,EntityManagerInterface $entityManager,Cart $cart,$reference): Response
     {
+        dd($request);
         $product_for_stripe=[];
         $YOUR_DOMAIN = "https://www.djsem-electronic.com";
         $order= $entityManager
