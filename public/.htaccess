@@ -18,11 +18,18 @@ DirectoryIndex index.php
 </IfModule>
 
 <IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteCond %{HTTPS} off
-    RewriteCond %{HTTP:X-Forwarded-Proto} !https
-    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
-    RewriteRule .* - [E=REQUEST_SCHEME:https]
+   RewriteEngine On
+
+   RewriteCond %{REQUEST_URI}::$1 ^(/.+)/(.*)::\2$
+   RewriteRule ^(.*) - [E=BASE:%1]
+
+   RewriteCond %{ENV:REDIRECT_STATUS} ^$
+   RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
+
+   RewriteCond %{REQUEST_FILENAME} -f
+   RewriteRule .? - [L]
+
+   RewriteRule .? %{ENV:BASE}/app.php [L]
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
     # project in a subdirectory, the base path will be prepended to allow proper
