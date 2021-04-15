@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Controller;
-use GuzzleHttp\Psr7\Request;
 use Stripe\Stripe;
 use App\Entity\Order;
 use App\Entity\Product;
@@ -17,9 +16,8 @@ class StripeController extends AbstractController
     /**
      *@Route("/commande/create-session/{reference}", name="stripe_create-session")
      */
-    public function index(\Symfony\Component\HttpFoundation\Request $request,EntityManagerInterface $entityManager,Cart $cart,$reference): Response
+    public function index(EntityManagerInterface $entityManager,Cart $cart,$reference): Response
     {
-        //dd($request);
         $product_for_stripe=[];
         $YOUR_DOMAIN = "https://www.djsem-electronic.com";
         $order= $entityManager
@@ -65,12 +63,11 @@ class StripeController extends AbstractController
         Stripe::setApiKey('sk_test_51IbTFlDtpGNDFtynjZWeBopVRugbMskXsB06YikqijydKVnLzs4kFQMlTaZwDpCDvp8tfGia66EGmBNSzdaLytvG00vV86wRed');
 
 
-            //dd(session_save_path());
 
+        //dd($product_for_stripe);
             $checkout_session = Session::create([
             'customer_email'=>$this->getUser()->getEmail(),
             'payment_method_types' => ['card'],
-
             'line_items' => [
                 $product_for_stripe
             ],
@@ -78,12 +75,12 @@ class StripeController extends AbstractController
             'success_url' => $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}',
             'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
             ]);
-        //dd($product_for_stripe);
 
-        $order->setStripeSessionId($_SESSION>id);
+
+        $order->setStripeSessionId($checkout_session->id);
         $entityManager->flush();
-        $response = new JsonResponse(['id' => $_SESSION->id]);
-        dd($_SESSION);
+        $response = new JsonResponse(['id' => $checkout_session->id]);
+        dd($checkout_session);
         return $response;
     }
 }
