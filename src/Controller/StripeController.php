@@ -80,7 +80,7 @@ class StripeController extends AbstractController
         $order->setStripeSessionId($checkout_session->id);
         $entityManager->flush();
         $response = new JsonResponse(['id' => $checkout_session->id]);
-        dd($checkout_session);
+        //dd($checkout_session);
         return $response;
     }
 }
