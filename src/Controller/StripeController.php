@@ -19,7 +19,7 @@ class StripeController extends AbstractController
      */
     public function index(\Symfony\Component\HttpFoundation\Request $request,EntityManagerInterface $entityManager,Cart $cart,$reference): Response
     {
-        dd($request);
+        //dd($request);
         $product_for_stripe=[];
         $YOUR_DOMAIN = "https://www.djsem-electronic.com";
         $order= $entityManager
