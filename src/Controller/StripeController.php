@@ -65,7 +65,17 @@ class StripeController extends AbstractController
 
 
         //
+            $checkout_session = Session::create([
+            //'customer_email'=>$this->getUser()->getEmail(),
+            'payment_method_types' => ['card'],
 
+            'line_items' => [
+                $product_for_stripe
+            ],
+            'mode' => 'payment',
+            //'success_url' => $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}',
+            //'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
+            ]);
         dd($product_for_stripe);
 
         $order->setStripeSessionId($checkout_session->id);
