@@ -18,11 +18,10 @@ DirectoryIndex index.php
 </IfModule>
 
 <IfModule mod_rewrite.c>
-   RewriteEngine On
-   RewriteCond %{HTTPS} off [OR]
-   RewriteCond %{HTTP_HOST} !^www\. [NC]
-   RewriteCond %{HTTP_HOST} ^(?:www\.)?(.+)$ [NC]
-   RewriteRule ^.*$ https://www.%1%{REQUEST_URI} [L,NE,R=301]
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
 
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
