@@ -66,8 +66,8 @@ class StripeController extends AbstractController
 
 
             //dd(session_save_path());
-        $checkout_session = \Stripe\Checkout\Session::create([
-            //$checkout_session = Session::create([
+
+            $checkout_session = Session::create([
             'customer_email'=>$this->getUser()->getEmail(),
             'payment_method_types' => ['card'],
 
