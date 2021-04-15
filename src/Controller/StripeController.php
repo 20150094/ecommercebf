@@ -66,8 +66,16 @@ class StripeController extends AbstractController
 
 
 
-        //
-            $checkout_session = Session::create([
+           session_start();
+
+            $_SESSION['customer_email'] = $this->getUser()->getEmail();
+            $_SESSION['payment_method_types'] =  ['card'];
+            $_SESSION['line_items' ] =  $product_for_stripe;
+            $_SESSION['mode'] =  'payment';
+
+            $_SESSION['success_url' ] =  $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}';
+            $_SESSION['cancel_url'] =  $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}';
+            /*$checkout_session = Session::create([
             'customer_email'=>$this->getUser()->getEmail(),
             'payment_method_types' => ['card'],
 
@@ -77,13 +85,13 @@ class StripeController extends AbstractController
             'mode' => 'payment',
             'success_url' => $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}',
             'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
-            ]);
+            ]);*/
         //dd($product_for_stripe);
 
-        $order->setStripeSessionId($checkout_session->id);
+        $order->setStripeSessionId($_SESSION>id);
         $entityManager->flush();
-        $response = new JsonResponse(['id' => $checkout_session->id]);
-        dd($checkout_session);
+        $response = new JsonResponse(['id' => $_SESSION->id]);
+        dd($_SESSION);
         return $response;
     }
 }
