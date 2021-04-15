@@ -65,17 +65,9 @@ class StripeController extends AbstractController
         Stripe::setApiKey('sk_test_51IbTFlDtpGNDFtynjZWeBopVRugbMskXsB06YikqijydKVnLzs4kFQMlTaZwDpCDvp8tfGia66EGmBNSzdaLytvG00vV86wRed');
 
 
+            dd(session_save_path());
 
-           session_start();
-
-            $_SESSION['customer_email'] = $this->getUser()->getEmail();
-            $_SESSION['payment_method_types'] =  ['card'];
-            $_SESSION['line_items' ] =  $product_for_stripe;
-            $_SESSION['mode'] =  'payment';
-
-            $_SESSION['success_url' ] =  $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}';
-            $_SESSION['cancel_url'] =  $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}';
-            /*$checkout_session = Session::create([
+            $checkout_session = Session::create([
             'customer_email'=>$this->getUser()->getEmail(),
             'payment_method_types' => ['card'],
 
@@ -85,7 +77,7 @@ class StripeController extends AbstractController
             'mode' => 'payment',
             'success_url' => $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}',
             'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
-            ]);*/
+            ]);
         //dd($product_for_stripe);
 
         $order->setStripeSessionId($_SESSION>id);
