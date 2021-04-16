@@ -154,7 +154,7 @@
 
 {% block script %}
 <script type="text/javascript">
-    var stripe = Stripe("pk_test_51IbTFlDtpGNDFtyneCUni2gDqP2V1HDPN1yEOIA43KF4dMPG4n86WUqFB8HqNMSP5SkTW6lKPnme9d8vN5qK4fd400iMA1o3vH");
+    var stripe = Stripe("pk_live_51IbTFlDtpGNDFtyneQxDHKPbkrApq2c0Ty3L8H25DCQuCro7aLzWgxNiTNmdcjduRlkZgUnW5NtJT3iVsR4CAeHF00Xusj9mim");
     var checkoutButton = document.getElementById("checkout-button");
     checkoutButton.addEventListener("click", function () {
       fetch("/commande/create-session/{{ reference }}",{
