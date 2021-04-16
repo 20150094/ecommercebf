@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\User;
 use Stripe\Stripe;
 use App\Entity\Order;
 use App\Entity\Product;
@@ -60,11 +61,9 @@ class StripeController extends AbstractController
         ];
 
 
-        Stripe::setApiKey('sk');
+        Stripe::setApiKey('sk_test_51IbTFlDtpGNDFtynjZWeBopVRugbMskXsB06YikqijydKVnLzs4kFQMlTaZwDpCDvp8tfGia66EGmBNSzdaLytvG00vV86wRed');
 
 
-
-        //dd($product_for_stripe);
             $checkout_session = Session::create([
             'customer_email'=>$this->getUser()->getEmail(),
             'payment_method_types' => ['card'],
@@ -72,15 +71,15 @@ class StripeController extends AbstractController
                 $product_for_stripe
             ],
             'mode' => 'payment',
-            'success_url' => $YOUR_DOMAIN . '/commande/merci/{CHECKOUT_SESSION_ID}',
-            'cancel_url' => $YOUR_DOMAIN . '/commande/erreur/{CHECKOUT_SESSION_ID}',
+            'success_url' => $YOUR_DOMAIN .'/paypal/'.$order->getUser()->getFirstName().'-'.$order->getUser()->getLastName().'/'.$order->getReference().'/'.$order->getUser()->getEmail().'/'.$order->getUser()->getTelephone(),                // '/commande/merci/{CHECKOUT_SESSION_ID}',
+            'cancel_url' => $YOUR_DOMAIN .'/commande/erreur/{CHECKOUT_SESSION_ID}',
             ]);
 
 
         $order->setStripeSessionId($checkout_session->id);
         $entityManager->flush();
         $response = new JsonResponse(['id' => $checkout_session->id]);
-        //dd($checkout_session);
+
         return $response;
     }
 }

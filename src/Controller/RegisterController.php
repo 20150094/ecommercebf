@@ -47,8 +47,8 @@ class RegisterController extends AbstractController
 
                 $doctrine->flush();
                 $mail=new Mail();
-                $content="Bonjour".' '.$user->getFirstname()."</br> Bienvenu la première plateforme dédié à l'électronique en Afrique</br></br>";
-                $mail->send($user->getEmail(),$user->getFirstname(),'Bienvenu à DJSEM-ELECTRONICS',$content);
+                $content="Bonjour".' '.$user->getFirstname()."</br> Bienvenu à DJSEM-ECTRONIC  Votre inscription s'est bien déroulé. pour toutes informations, écrivez nous sur la page contact. Merci</br></br>";
+                $mail->send($user->getEmail(),$user->getFirstname(),'Bienvenu à DJSEM-ELECTRONIC',$content);
                
                
                 $notification="Votre inscription s'est bien déroulée vous pouvez dès à présent vous connectez à votre compte";

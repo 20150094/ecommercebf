@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\Product;
+use GuzzleHttp\Psr7\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,12 +21,13 @@ class OrderCancelController extends AbstractController
     /**
      * @Route("/commande/erreur/{stripeSessionId}", name="order_cancel")
      */
-    public function index($stripeSessionId): Response
+    public function index(\Symfony\Component\HttpFoundation\Request $request,$stripeSessionId): Response
     {
+        dd($request);
         $order=$this->entityManager
         ->getRepository(Order::class)
         ->findOneByStripeSessionId($stripeSessionId);
-        
+
         if(!$order || $order->getUser()!=$this->getUser())
         {
             return $this->redirectToRoute('home');

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controller;
+use App\Classe\Sms;
 use App\Entity\User;
 use App\Classe\Mail;
 use App\Entity\ResetPassword;
@@ -10,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ResetPasswordController extends AbstractController
@@ -45,14 +47,16 @@ class ResetPasswordController extends AbstractController
                 $this->entityManager->flush();
                 //2: Envoyer un email à l'utilisateur avec un ien lui permettant de mettre à jour son mot de passe
                 $mail= new Mail();
+                $sms=new Sms();
                 $url=$this->generateUrl('update_password',[
                     'token'=> $reset_password->getToken()
-                    ]);
+                    ],UrlGeneratorInterface::ABSOLUTE_URL);
                     
                 $content="Bonjour ".$user->getFirstname()."<br/>Vous avez demandé à rénitialiser votre mot de passe sur le site DJSEM-ELECTRONICS.<br/></br>";
-                $content.="Merci de bien vouloir cliquer sur le lien suivant pour <a href='".$url."'> mettre à jour votre mot de passe</a>.";
+                $content.="Merci de bien vouloir cliquer sur le lien suivant valable 3h:  <a href='".$url."'> mettre à jour votre mot de passe</a>.";
                 $mail->send($user->getEmail(),$user->getFirstname().' '.$user->getLastname(),'Rénitialiser votre mot de passe sur le site DJSEM-ELECTRONICS',$content);
-                $this->addFlash('notice',"vous allez recevoir dans quelques seconde un mail avec le procédure pour rénitialiser votre mot de passe. si ce n'est pas le cas vérifié dans vos spams.");
+                $sms->send($content,$user->getTelephone());
+                $this->addFlash('notice',"vous allez recevoir dans quelques seconde un mail et un sms avec le procédure pour rénitialiser votre mot de passe. si ce n'est pas le cas vérifié dans vos spams.");
             
             }
             else

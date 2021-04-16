@@ -48,7 +48,7 @@ class OrderSuccessController extends AbstractController
                 $mail->send($order->getUser()->getEmail(),$order->getUser()->getFirstname(),'Votre commande à été Valider',$content);
 
 
-                $number='+33'.$this->getUser()->getTelephone();
+                $number='+33'.$order->getUser()->getTelephone();
                 $sms->send($content,strval($number));
 
 
