@@ -16,14 +16,14 @@ use Doctrine\ORM\EntityManagerInterface;
 class HomeController extends AbstractController
 {
 
-    
+
         private $entityManager;
     
         public function __construct(EntityManagerInterface $entityManager)
         {
             $this->entityManager = $entityManager;
         }
-        //php -S 127.0.0.1:8000 -t public
+
 
     /**
      * @Route("/", name="home")

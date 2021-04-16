@@ -30,10 +30,10 @@ class ContactController extends AbstractController
             $content.=" contenu du message: "."<stong>".$form->getData()['content']."</stong></br>";
             $content.="Vous pouvez le reconctacter à l'adresse mail suivante:"."<stong>".$form->getData()['email']."</stong></br>";
     // à modifier l'adresse mail du destinataire
-            $mail->send($this->getUser()->getEmail(),"Administrateur",'Nouvelle demande',$content);
+            $mail->send('contact@djsem-electronic.com',"Administrateur",'Nouvelle demande',$content);
 
 
-
+            //$this->getUser()->getEmail()
         }
         return $this->render('contact/index.html.twig',[
             'form'=>$form->createView()

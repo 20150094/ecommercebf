@@ -46,17 +46,9 @@ class OrderSuccessController extends AbstractController
                 $sms=new Sms();
                 $content="Bonjour ".$order->getUser()->getFirstname()." votre commande référence N° ".$order->getReference()." a été validée avec sucess ";
                 $mail->send($order->getUser()->getEmail(),$order->getUser()->getFirstname(),'Votre commande à été Valider',$content);
-
-
                 $number='+33'.$order->getUser()->getTelephone();
                 $sms->send($content,strval($number));
-
-
-
-           
             }
-           
-            
             return $this->render('order_success/index.html.twig',[
                 'order'=>$order
             ]);

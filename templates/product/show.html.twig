@@ -13,8 +13,7 @@
        
 </style>
 
-  <h1>{{product.name}}</h1> 
-   Produits
+ <hr><hr>
  
   <div class="row"> 
   
@@ -22,9 +21,12 @@
         <img src="/Images/{{product.illustration}}" alt="{{product.name}}" class="img-fluid">
     </div>    
     <div class="col-md-7 my-auto">
-       <h3> {{product.name}}</h3>
+       <h1> {{product.name}}</h1>
        <h3> {{product.subtitle}}</h3>
-       <h4> {{(product.prix/100) |number_format(2,',','.')}} € </h4>
+        <div class="mt-0 bg-warning">
+            <h4 > {{(product.prix/100) |number_format(2,',','.')}} € </h4>
+        </div>
+
        <hr>
        <p>
         {{product.description}}

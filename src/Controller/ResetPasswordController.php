@@ -47,7 +47,7 @@ class ResetPasswordController extends AbstractController
                 $this->entityManager->flush();
                 //2: Envoyer un email à l'utilisateur avec un ien lui permettant de mettre à jour son mot de passe
                 $mail= new Mail();
-                $sms=new Sms();
+                //$sms=new Sms();
                 $url=$this->generateUrl('update_password',[
                     'token'=> $reset_password->getToken()
                     ],UrlGeneratorInterface::ABSOLUTE_URL);
@@ -55,9 +55,8 @@ class ResetPasswordController extends AbstractController
                 $content="Bonjour ".$user->getFirstname()."<br/>Vous avez demandé à rénitialiser votre mot de passe sur le site DJSEM-ELECTRONICS.<br/></br>";
                 $content.="Merci de bien vouloir cliquer sur le lien suivant valable 3h:  <a href='".$url."'> mettre à jour votre mot de passe</a>.";
                 $mail->send($user->getEmail(),$user->getFirstname().' '.$user->getLastname(),'Rénitialiser votre mot de passe sur le site DJSEM-ELECTRONICS',$content);
-                $sms->send($content,$user->getTelephone());
-                $this->addFlash('notice',"vous allez recevoir dans quelques seconde un mail et un sms avec le procédure pour rénitialiser votre mot de passe. si ce n'est pas le cas vérifié dans vos spams.");
-            
+                //$sms->send($content,'33761233467');
+                $this->addFlash('notice',"vous allez recevoir dans quelques seconde un mail  contenant la  procédure pour Réinitialiser votre mot de passe. si ce n'est pas le cas vérifié dans vos spams.");
             }
             else
             {
@@ -96,7 +95,7 @@ class ResetPasswordController extends AbstractController
             $reset_password->getUser()->setPassword($password);
             $this->entityManager->flush();
 
-            $this->addFlash('notice','Votre a bien été mit à jour');
+            $this->addFlash('notice','Votre mot de passe a bien été mit à jour');
         
             return $this->redirectToRoute('app_login');
         }  
@@ -104,8 +103,5 @@ class ResetPasswordController extends AbstractController
                 'form'=>$form->createView()
             ]);
 
-           
-        
-        dd($reset_password);
     }
 }

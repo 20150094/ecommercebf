@@ -23,7 +23,7 @@ class OrderCancelController extends AbstractController
      */
     public function index(\Symfony\Component\HttpFoundation\Request $request,$stripeSessionId): Response
     {
-        dd($request);
+
         $order=$this->entityManager
         ->getRepository(Order::class)
         ->findOneByStripeSessionId($stripeSessionId);
