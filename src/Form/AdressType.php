@@ -50,11 +50,12 @@ class AdressType extends AbstractType
             ->add('postal',TextType::class,[
                 'label'=>' votre code postal',
                 'attr'=>[
-                    'placeholder'=>'entrer votre code postal'
+                    'placeholder'=>' facultatif ( entrer votre code postal)'
                 ]
             ])
             ->add('city',TextType::class,[
                 'label'=>'votre ville',
+                'required' => false,
                 'attr'=>[
                     'placeholder'=>'entrer votre ville'
                 ]
